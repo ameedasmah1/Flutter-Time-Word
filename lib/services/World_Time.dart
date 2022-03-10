@@ -1,5 +1,6 @@
 
 import 'package:http/http.dart' ;
+import 'package:intl/intl.dart';
 import 'dart:convert';
 class WorldTime {
 
@@ -8,7 +9,8 @@ class WorldTime {
   String flag; // url to an asset flag icon
   String url; // location url for api endpoint
 
-  WorldTime({required this.location,required this.flag,required this.url,required this.time });
+
+  WorldTime( this.location, this.flag, this.url, this.time );
 
   Future <void> getData() async{
    try{
@@ -20,12 +22,11 @@ class WorldTime {
      DateTime now = DateTime.parse(datetime);
      now = now.add(Duration(hours: int.parse(offset)));
 
-     time = now.toString();
+     print(data);
+     time = DateFormat.jm().format(now);
      print('s, $time');
    }catch(err){
      time = 'could not get data';
    }
-
-
   }
 }
